@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC&display=swap');
+
+:root{
+    --font: 'Cormorant SC';
+    --round: 20px;
+}
+
+body{
+    margin: 0;
+}
+
+.container{
+    grid-template-areas: 
+    "header" "main-block" "footer";
+    grid-template-rows: 0.1fr 1.5fr 0.2fr;
+    height: 100vh;
+    display: grid;
+    gap: 0.2rem;
+}
+
+/*Template html*/
+    /*Header*/
+    .header{
+        grid-template-areas: ". . logo-block . navigation";
+        grid-template-columns: 0.3fr 0.1fr 0.3fr 0.1fr 0.3fr;
+        background-color: rgb(0, 0, 0);
+        grid-area: header;
+        color: white;
+        display: grid;
+        gap: 0.2rem;
+    }
+        /*Navigation*/
+        .home, .catalog, .profile, .cart{
+            text-decoration: none;
+            margin-right: 5%;
+            color: white;
+        }
+        .navigation-block{
+            grid-template-rows: 0.3fr 1fr 0.3fr;
+            grid-template-areas: "." "navigation" ".";
+            background-color: rgb(0, 0, 0);
+            grid-area: navigation;
+            display: grid;
+            color: black;
+        }
+        .navigation{
+            justify-content: flex-end;
+            color: rgb(255, 255, 255);
+            grid-area: navigation;
+            align-items: center;
+            display: flex;
+
+            font-family: var(--font);
+            font-size: 20px;
+        }
+        /*Logo*/
+        .logo-block{
+            grid-template-rows: 0.3fr 1fr 0.3fr;
+            grid-template-areas: "." "logo" ".";
+            background-color: rgb(0, 0, 0);
+            grid-area: logo-block;
+            color: black;
+            display: grid;
+        }
+        .logo{
+            background-color: rgb(248, 248, 248);
+            border-radius: var(--round);
+            justify-content: center;
+            align-items: center;
+            grid-area: logo;
+            color: black;
+            display: flex;
+
+            font-family: var(--font);
+            font-size: 25px;
+        }
+
+    /*Main*/
+    .main-block{
+        grid-template-areas: ". banner-block ." ". news-block .";
+        grid-template-columns: 0.1fr 2fr 0.1fr;
+        grid-template-rows: 1fr 1fr;
+        background-color: rgb(255, 255, 255);
+        grid-area: main-block;
+        display: grid;
+        gap: 0.2rem;
+    }
+
+    /*Footer*/
+    .footer{
+        grid-template-columns: 2fr 2fr 2fr;
+        grid-template-areas: "contact-block . license-block";
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+        grid-area: footer;
+        color: white;
+        display: grid;
+    }
+        /*Content*/
+        .google, .facebook, .instagram{
+            text-decoration: none;
+            margin-left: 10%;
+            color: white;
+        }
+        .agreement, .policy{
+            text-decoration: none;
+            margin-left: 5%;
+            color: white;
+        }
+        .contact-block{
+            grid-template-areas: "icons" "policy";
+            background-color: rgb(0, 0, 0);
+            grid-template-rows: 2fr 1fr;
+            grid-area: contact-block;
+            display: grid;
+            gap: 0.2rem;
+        }
+        .icons{
+            justify-content: flex-start;
+            align-items: center;
+            grid-area: icons;
+            display: flex;
+
+            font-family: var(--font);
+            font-size: 20px;
+        }
+        .policy{
+            justify-content: flex-start;
+            align-items: center;
+            grid-area: policy;
+            display: flex;
+
+            font-family: var(--font);
+            font-size: 20px;
+        }
+        /*License*/
+        .license-block{
+            grid-template-areas: "." "license";
+            grid-template-rows: 2.1fr 1fr;
+            grid-area: license-block;
+            display: grid;
+        }
+        .license{
+            grid-area: license;
+
+            font-family: var(--font);
+            font-size: 20px;
+        }
