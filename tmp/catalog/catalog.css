@@ -82,7 +82,7 @@ body{
 
     /*Main*/
     .main-block{
-        grid-template-areas: ". banner-block ." ". news-block .";
+        grid-template-areas: ". cards-block ." ". cards-block .";
         grid-template-columns: 0.2fr 1fr 0.2fr;
         background-color: rgb(255, 255, 255);
         grid-template-rows: 1fr 1fr;
@@ -90,6 +90,19 @@ body{
         display: grid;
         gap: 0.2rem;
     }
+        /**/
+        .cards-block{
+            grid-template-columns: repeat(4, 1fr);
+            grid-area: cards-block;
+            max-width: 1000px;
+            display: grid;
+            gap: 0.2rem;
+        }
+
+        .card-image{
+            width: 100%;
+            display: block;
+        }
 
     /*Footer*/
     .footer{
@@ -153,53 +166,3 @@ body{
             font-family: var(--font);
             font-size: 20px;
         }
-
-/*Desctop CSS*/
-    /*Main content*/
-    .banner-block{
-        grid-template-rows: 0.2fr 2fr 0.2fr;
-        grid-template-columns: 0.2fr 1fr 0.2fr;
-        background-color: rgb(255, 255, 255);
-        grid-template-areas: 
-        ". . ."
-        ". banner ."
-        ". . .";
-        grid-area: banner-block;
-        display: grid;
-        gap: 0.2rem;
-    }
-    .banner{
-        background-color: rgb(100, 100, 100);
-        grid-area: banner;
-        text-align: center;
-        color: white;
-    }
-    .news-block{
-        grid-template-columns: 0.3fr 1fr 0.3fr;
-        background-color: rgb(255, 255, 255);
-        grid-template-areas: ". subblock .";
-        grid-area: news-block;
-        display: grid;
-        gap: 0.2rem;
-    }
-    .news-subblock{
-        background-color: rgb(255, 255, 255);
-        grid-template-areas: "image text";
-        grid-template-columns: 2fr 1fr;
-        grid-area: subblock;
-        display: grid;
-        gap: 0.2rem;
-    }
-    .image{
-        background-color: rgb(100, 100, 100);
-        grid-area: image;
-        text-align: center;
-        color: white;
-    }
-    .text{
-        background-color: rgb(100, 100, 100);
-        grid-area: text;
-        text-align: center;
-        color: white;
-    }
-/*Mobile CSS*/
