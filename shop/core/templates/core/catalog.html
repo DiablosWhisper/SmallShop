@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'core/css/catalog.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content %}
+<div class="cards-block">
+    {% for product in products %}
+        <div class="card">
+            <img src="/media/{{ product.photos.first }}"
+            class="card-image">
+            <div class="title">{{ product.title }}</div>
+            <div class="price">{{ product.price }}</div>
+            {% for related in product.related.all %}
+                <div class="color">{{ related.color }}</div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock content%}

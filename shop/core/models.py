@@ -1,6 +1,7 @@
 from django.db.models import (Model, ImageField, TextField,
 PositiveIntegerField, CharField, ManyToManyField, 
-OneToOneField, DateTimeField, CASCADE)
+DateTimeField, CASCADE)
+from django.db.models.fields.related import ForeignKey
 from colorfield.fields import ColorField
 from django.utils import timezone
 
@@ -32,17 +33,17 @@ class Product(Model):
     title=CharField(max_length=100, null=False, blank=False)
     discount=PositiveIntegerField(null=True, blank=True)
     price=PositiveIntegerField(null=False, blank=False)
-    description=TextField(max_length=255, null=False)
+    description=TextField(max_length=255, blank=False)
+
+    #* Relation region
+    color=ForeignKey(Color, on_delete=CASCADE, blank=False)
+    related=ManyToManyField("self", blank=True)
+    photos=ManyToManyField(Photo, blank=False)
+    sizes=ManyToManyField(Size, blank=False)
 
     #* Database region
     created_at=DateTimeField(default=timezone.now)
     update_at=DateTimeField(default=timezone.now)
 
-    #* Relation region
-    color=OneToOneField(Color, on_delete=CASCADE)
-    related=ManyToManyField("self", blank=True)
-    photos=ManyToManyField(Photo)
-    sizes=ManyToManyField(Size)
-
     #* Class inner methods
-    def __str__(self)->str:return self.title
+    def __str__(self)->str: return self.title
