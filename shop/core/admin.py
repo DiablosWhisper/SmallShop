@@ -10,9 +10,8 @@ class ProductForm(ModelForm):
         self.fields['related'].queryset=(Product.objects.
         exclude(pk=self.instance.pk))
 
-    class Meta: 
-        fields = "__all__"
-        model=Product 
+    """Class meta area"""
+    class Meta: fields = "__all__"; model=Product
     
 class ProductAdmin(ModelAdmin):
     exclude=["created_at", "updated_at", "slug"]
