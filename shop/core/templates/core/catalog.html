@@ -7,13 +7,33 @@
 <div class="cards-block">
     {% for product in products %}
         <div class="card">
+            <!--Product preview image area-->
             <img src="/media/{{ product.photos.first }}"
             class="card-image">
+
+            <!--Product information area-->
             <div class="title">{{ product.title }}</div>
             <div class="price">{{ product.price }}</div>
-            {% for related in product.related.all %}
-                <div class="color">{{ related.color }}</div>
-            {% endfor %}
+            
+            <!--Product colors area-->
+            <div class="colors">
+                <!--Product color-->
+                <span class="color" style="background-color: 
+                {{ product.color.color }};" href="#"></span>
+
+                <!--Related colors-->
+                {% for related in product.related.all %}
+                    <span class="color" style="background-color: 
+                    {{ related.color.color }};" href="#"></span>
+                {% endfor %}
+            </div>
+
+            <!--Product size area-->
+            <div class="sizes">
+                {% for size in product.sizes.all %}
+                    <span class="size">{{ size.size }}</span>
+                {% endfor %}
+            </div>
         </div>
     {% endfor %}
 </div>

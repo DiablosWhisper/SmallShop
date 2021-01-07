@@ -8,16 +8,53 @@
         display: grid;
         gap: 0.2rem;
     }
-        /**/
-        .cards-block{
-            grid-template-columns: repeat(4, 1fr);
-            grid-area: cards-block;
-            max-width: 1000px;
-            display: grid;
-            gap: 0.2rem;
-        }
 
-        .card-image{
-            width: 100%;
-            display: block;
-        }
+    .cards-block{
+        grid-template-columns: repeat(4, 1fr);
+        grid-area: cards-block;
+        max-width: 1000px;
+        display: grid;
+        gap: 0.2rem;
+    }
+
+    .card-image{
+        width: 100%;
+        display: block;
+    }
+
+    .colors{
+        display: flexbox;
+    }
+
+    .price{
+        font-family: var(--font);
+        font-size: 25px;
+        padding-bottom: 5px;
+    }
+
+    .color{
+        border-color: rgb(165, 165, 165);
+        display: inline-block;
+        border-style: solid;
+        border-width: 3px;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+    }
+
+    .sizes{
+        display: inline-flexbox;
+    }
+    
+    .size{
+        border-color: rgb(165, 165, 165);
+        display: inline-block;
+        border-style: solid;
+        border-radius: 20%;
+        border-width: 3px;
+        height: 15px;
+        width: 30px;
+        text-align: center;
+        font-size: 13px;
+        font-family: var(--font);
+    }

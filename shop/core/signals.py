@@ -6,8 +6,8 @@ from .models import Photo, Product
 def delete_references(sender: object, 
 instance: object, **kwargs)->None:
     """
-    Overrides default delete method
-    :return None
+    Overrides default delete method\n
+    @return None
     """
     instance.photos.all().delete()
 
@@ -15,7 +15,7 @@ instance: object, **kwargs)->None:
 def delete_on_delete(sender: object, 
 instance: object, **kwargs)->None:
     """
-    Overrides default delete method
-    :return None
+    Overrides default delete method\n
+    @return None
     """
     instance.photo.delete(save=False)
