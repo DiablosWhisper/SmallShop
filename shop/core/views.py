@@ -1,9 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import (render, get_object_or_404)
 from .models import Product
+
+def product(request: object, slug: str)->"HTML":
+    """
+    Returns rendered HTML page with slug found product\n
+    @param request: HTTP request\n
+    @return rendered HTML page
+    """
+    product=get_object_or_404(klass=Product, slug=slug)
+    return render(template_name="core/product.html",
+    context={"product": product}, request=request)
 
 def catalog(request: object)->"HTML":
     """
-    Returns rendered HTML catalog page with products\n
+    Returns rendered HTML page with all found products\n
     @param request: HTTP request\n
     @return rendered HTML page
     """
@@ -13,7 +23,7 @@ def catalog(request: object)->"HTML":
 
 def home(request: object)->"HTML":
     """
-    Returns rendered HTML home page\n
+    Returns rendered HTML page without context\n
     @param request: HTTP request\n
     @return rendered HTML page
     """

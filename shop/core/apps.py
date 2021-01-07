@@ -5,7 +5,7 @@ class CoreConfig(AppConfig):
 
     def ready(self)->None:
         """
-        Needs for connecting signals\n
+        Connects app's signals\n
         @return None
         """
         import core.signals

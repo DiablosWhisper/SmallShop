@@ -12,21 +12,27 @@
             class="card-image">
 
             <!--Product information area-->
-            <div class="title">{{ product.title }}</div>
-            <div class="price">{{ product.price }}</div>
+            <a href="{% url 'core-catalog' %}{{ product.slug }}" class="title">
+                {{ product.title }}
+            </a>
+            <div class="price">{{ product.price }}$</div>
             
             <!--Product colors area-->
-            <div class="colors">
-                <!--Product color-->
-                <span class="color" style="background-color: 
-                {{ product.color.color }};" href="#"></span>
+            {% if product.color %}
+                <div class="colors">
+                    <!--Product color-->
+                    <a href="{% url 'core-catalog' %}{{ product.slug }}"
+                    class="color" style="background-color: 
+                    {{ product.color.color }};"></a>
 
-                <!--Related colors-->
-                {% for related in product.related.all %}
-                    <span class="color" style="background-color: 
-                    {{ related.color.color }};" href="#"></span>
-                {% endfor %}
-            </div>
+                    <!--Related colors-->
+                    {% for related in product.related.all %}
+                        <a href="{% url 'core-catalog' %}{{ related.slug }}"
+                        class="color" style="background-color: 
+                        {{ related.color.color }};"></a>
+                    {% endfor %}
+                </div>
+            {%endif%}
 
             <!--Product size area-->
             <div class="sizes">

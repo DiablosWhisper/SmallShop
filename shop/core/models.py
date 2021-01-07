@@ -1,6 +1,6 @@
 from django.db.models import (Model, ImageField, TextField,
 PositiveIntegerField, CharField, ManyToManyField, 
-DateTimeField, ForeignKey, CASCADE)
+DateTimeField, ForeignKey, SlugField, CASCADE)
 from django.utils.html import format_html
 from colorfield.fields import ColorField
 from django.utils import timezone
@@ -36,14 +36,16 @@ class Product(Model):
     description=TextField(max_length=255, blank=False)
 
     """Relation region"""
-    color=ForeignKey(Color, on_delete=CASCADE, blank=False)
     related=ManyToManyField("self", blank=True)
     photos=ManyToManyField(Photo, blank=False)
     sizes=ManyToManyField(Size, blank=False)
+    color=ForeignKey(Color, blank=True,
+    on_delete=CASCADE, null=True)
 
     """Database region"""
+    slug=SlugField(max_length=50, unique=True, blank=True)
     created_at=DateTimeField(default=timezone.now)
-    update_at=DateTimeField(default=timezone.now)
+    updated_at=DateTimeField(default=timezone.now)
 
     """Class inner methods"""
     def __str__(self)->str: return self.title

@@ -18,10 +18,8 @@
             </div>
             <nav class="navigation-block">
                 <div class="navigation">
-                    <a class="home" href="home.html">Home</a> 
-                    <a class="catalog" href="catalog.html">Catalog</a> 
-                    <a class="profile" href="#">Profile</a> 
-                    <a class="cart" href="#">Cart</a>
+                    <a class="home" href="{% url 'core-home' %}">Home</a> 
+                    <a class="catalog" href="{% url 'core-catalog' %}">Catalog</a> 
                 </div>
             </nav>
         </header>
