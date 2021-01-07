@@ -5,7 +5,13 @@ from django.contrib import admin
 
 class ProductForm(ModelForm):
     """Class inner methods"""
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs)->None:
+        """
+        Excludes the current product from the list
+        of many-to-many association products to
+        prevent recursion call while saving\n
+        @return None
+        """
         super(ProductForm, self).__init__(*args, **kwargs)
         self.fields['related'].queryset=(Product.objects.
         exclude(pk=self.instance.pk))
