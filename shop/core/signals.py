@@ -22,5 +22,6 @@ sender: object, **kwargs)->None:
     of the product and random postfix\n
     @return None
     """
-    instance.title+=" "+instance.color.title
     instance.slug=generate_slug(instance)
+    instance.title+=(f" {instance.color}"
+    if instance.color else "")
