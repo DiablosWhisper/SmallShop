@@ -23,5 +23,3 @@ sender: object, **kwargs)->None:
     @return None
     """
     instance.slug=generate_slug(instance)
-    instance.title+=(f" {instance.color}"
-    if instance.color else "")
