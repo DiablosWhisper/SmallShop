@@ -1,6 +1,11 @@
 from django.shortcuts import (render, get_object_or_404)
 from .models import Product
 
+"""
+TODO: Pairwise connection between products in many-to-many
+TODO: Beautify catalog method, reduce if-statements
+"""
+
 def product(request: object, slug: str)->"HTML":
     """
     Returns rendered HTML page with slug found product\n
@@ -17,8 +22,14 @@ def catalog(request: object)->"HTML":
     @param request: HTTP request\n
     @return rendered HTML page
     """
+    products=Product.objects.all()
+    send, remove=set(), set()
+    for product in products:
+        if product not in remove: send.add(product)
+        for related in product.related.all():
+            if related not in remove and related not in send: remove.add(related)
     return render(template_name="core/catalog.html",
-    context={"products": Product.objects.all()},
+    context={"products": send},
     request=request)
 
 def home(request: object)->"HTML":
