@@ -4,16 +4,6 @@ from django.dispatch import receiver
 from .models import Photo, Product
 from .utils import generate_slug
 
-@receiver(pre_delete, sender=Product)
-def delete_references(sender: object, 
-instance: object, **kwargs)->None:
-    """
-    Deletes file references when the entity
-    is going to be removed from database\n
-    @return None
-    """
-    instance.photos.all().delete()
-
 @receiver(post_delete, sender=Photo)
 def delete_files(instance: object,
 sender: object, **kwargs)->None:

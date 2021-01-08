@@ -8,7 +8,7 @@
     {% for product in products %}
         <div class="card">
             <!--Product preview image area-->
-            <img src="/media/{{ product.photos.first }}"
+            <img src="{{ product.photo_set.first }}"
             class="card-image">
 
             <!--Product information area-->
