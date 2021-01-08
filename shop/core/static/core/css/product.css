@@ -1,0 +1,90 @@
+/*Main*/
+.main-block{
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    background-color: rgb(255, 255, 255);
+    grid-template-areas: ". content-block ." ". content-block .";
+    grid-template-rows: 1fr 1fr;
+    grid-area: main-block;
+    display: grid;
+    gap: 0.2rem;
+}
+    /*Content*/
+    .content-block{
+        grid-template-areas: 
+        ". . . ."
+        ". product title ."
+        ". product price ."
+        ". product description ."
+        ". product colors ."
+        ". . sizes ."
+        ". images add .";
+        grid-template-rows: 0.2fr 0.1fr 0.1fr 
+        1fr 0.1fr 0.1fr 0.15fr 0.2fr;
+        grid-template-columns: 0.2fr 1fr 1fr 0.2fr;
+        background-color: rgb(255, 255, 255);
+        grid-area: content-block;
+        display: grid;
+        gap: 0.2rem;
+    }
+    .description{
+        grid-area: description;
+        font-family: var(--font);
+        font-size: 24px;
+    }
+    .product{
+        grid-area: product;
+        font-family: var(--font);
+    }
+
+    .colors{
+        grid-area: colors;
+        display: flexbox;
+    }
+
+    .color{
+        border-color: rgb(165, 165, 165);
+        display: inline-block;
+        border-style: solid;
+        border-width: 3px;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+    }
+
+    .images{
+        grid-area: images;
+        font-family: var(--font);
+    }
+    .title{
+        font-size: 40px;
+        grid-area: title;
+        font-family: var(--font);
+    }
+    .price{
+        font-size: 40px;
+        grid-area: price;
+        font-family: var(--font);
+    }
+
+    .add{
+        font-family: var(--font);
+        grid-area: add;
+    }
+
+    .sizes{
+        grid-area: sizes;
+        display: inline-flexbox;
+    }
+    
+    .size{
+        border-color: rgb(165, 165, 165);
+        display: inline-block;
+        border-style: solid;
+        border-radius: 20%;
+        border-width: 3px;
+        height: 15px;
+        width: 30px;
+        text-align: center;
+        font-size: 13px;
+        font-family: var(--font);
+    }

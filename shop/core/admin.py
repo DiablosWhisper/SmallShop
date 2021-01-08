@@ -7,7 +7,7 @@ class ProductForm(ModelForm):
     """Class inner methods"""
     def __init__(self, *args, **kwargs)->None:
         """
-        1)Excludes the current product from the list
+        Excludes the current product from the list
         of many-to-many association products to
         prevent recursion call while saving\n
         @return None

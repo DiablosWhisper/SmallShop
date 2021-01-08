@@ -29,14 +29,15 @@
         color: rgb(0, 0, 0);
     }
 
-    .colors{
-        display: flexbox;
-    }
-
     .price{
         font-family: var(--font);
         font-size: 25px;
         padding-bottom: 5px;
+    }
+
+    
+    .colors{
+        display: flexbox;
     }
 
     .color{
