@@ -11,9 +11,10 @@ def render_related_images(images: List)->str:
     for displaying related images\n
     @return rendered HTML page
     """
+
     """Generates HTML and adds style to display"""
     html=[f"""<img src='{image}' style='height: 70px; 
-    width: 70px'; display: inline-block;">""" 
+    width: 70px'; display: inline-block;">"""
     for image in images]
     return format_html("\n".join(html))
 
@@ -23,6 +24,8 @@ def render_hex_color(color: str)->str:
     for displaying hex color\n
     @return rendered HTML page
     """
+
+    """Generates HTML and adds style to display"""
     html=f"""<a style='background-color: {color}; 
     display: inline-block; height: 20px; 
     width: 20px; border-radius: 50%;'>
@@ -36,6 +39,7 @@ generated_slug: str=None)->str:
     of the product and random postfix\n
     @return generated slug
     """
+
     """Generates slug using letters and digits"""
     generate=lambda slug: slug+"-"+"".join([
     random.choice(letters+digits) 

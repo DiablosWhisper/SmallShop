@@ -22,6 +22,8 @@ class ProductForm(ModelForm):
 class ProductAdmin(ModelAdmin):
     fields=["title", ("price", "discount"), "description",
     ("related", "sizes", "color"), "photos"]
+    list_display=["title", "price", "discount", "color"]
+    list_filter=["title", "price", "discount", "color"]
     exclude=["created_at", "updated_at", "slug"]
     readonly_fields=["photos"]
     form=ProductForm
