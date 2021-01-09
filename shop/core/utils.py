@@ -11,12 +11,30 @@ def render_related_images(images: List)->str:
     for displaying related images\n
     @return rendered HTML page
     """
-
     """Generates HTML and adds style to display"""
     html=[f"""<img src='{image}' style='height: 70px; 
     width: 70px'; display: inline-block;">"""
     for image in images]
     return format_html("\n".join(html))
+
+def get_related(instance: object)->List:
+    """
+    Finds all related product using iterative
+    implementation of BFS algorithm\n
+    @return related products
+    """
+    """Condition for adding node to sets"""
+    condition=(lambda node, queue, visited:
+    not (node in queue or node in visited))
+
+    """BFS iterative algorithm"""
+    visited, queue={instance}, {instance}
+    while queue:
+        [(visited.add(node), queue.add(node))
+        for node in queue.pop().related.all() 
+        if condition(node, queue, visited)]
+        
+    return visited
 
 def render_hex_color(color: str)->str:
     """
@@ -24,7 +42,6 @@ def render_hex_color(color: str)->str:
     for displaying hex color\n
     @return rendered HTML page
     """
-
     """Generates HTML and adds style to display"""
     html=f"""<a style='background-color: {color}; 
     display: inline-block; height: 20px; 
@@ -39,7 +56,6 @@ generated_slug: str=None)->str:
     of the product and random postfix\n
     @return generated slug
     """
-
     """Generates slug using letters and digits"""
     generate=lambda slug: slug+"-"+"".join([
     random.choice(letters+digits) 
