@@ -4,7 +4,7 @@ from .utils import generate_slug, get_related
 from django.dispatch import receiver
 from .models import Photo, Product
 
-#region -----Product signals-----
+#region                 -----Product Signals-----
 @receiver(m2m_changed, sender=Product.related.through)
 def pair_product(instance: object, sender: object, 
 action: str, **kwargs)->None:
@@ -24,7 +24,7 @@ sender: object, **kwargs)->None:
     instance.slug=generate_slug(instance)
 #endregion
 
-#region -----Photo signals-----
+#region                 -----Photo Signals-----
 @receiver(post_delete, sender=Photo)
 def delete_on_delete(instance: object,
 sender: object, **kwargs)->None:

@@ -5,6 +5,7 @@ from string import digits
 from typing import List
 import random
 
+#region                 -----Render Functions-----
 def render_related_images(images: List)->"HTML":
     """
     Generates and beautifies HTML code
@@ -29,7 +30,9 @@ def render_hex_color(color: str)->"HTML":
     width: 20px; border-radius: 50%;'>
     </a>"""
     return format_html(html)
+#endregion
 
+#region                 -----Other Functions-----
 def get_related(instance: object)->List:
     """
     Finds all related product using iterative
@@ -72,3 +75,4 @@ generated_slug: str=None)->str:
     return (generate_slug(instance=instance,
     generated_slug=generate(slug)) if exists
     else slug)
+#endregion

@@ -3,6 +3,7 @@ from django.contrib.admin import ModelAdmin
 from django.forms import ModelForm
 from django.contrib import admin
 
+#region                 -----Admin Forms-----
 class ProductForm(ModelForm):
     """Class inner methods"""
     def __init__(self, *args, **kwargs)->None:
@@ -18,7 +19,9 @@ class ProductForm(ModelForm):
 
     """Class meta area"""
     class Meta: fields="__all__"; model=Product
-    
+#endregion
+
+#region                 -----Admin Pages-----
 class ProductAdmin(ModelAdmin):
     fields=["title", ("price", "discount"), "description",
     ("related", "sizes", "color"), "photos"]
@@ -33,8 +36,11 @@ class ColorAdmin(ModelAdmin):
 
 class PhotoAdmin(ModelAdmin):
     list_display=["title", "photo"]
+#endregion
 
+#region                 -----Page Record-----
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Color, ColorAdmin)
 admin.site.register(Size)
+#endregion
