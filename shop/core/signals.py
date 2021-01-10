@@ -24,7 +24,7 @@ sender: object, **kwargs)->None:
     instance.slug=generate_slug(instance)
 #endregion
 
-#region                 -----Photo Signals-----
+#region                  -----Photo Signals-----
 @receiver(post_delete, sender=Photo)
 def delete_on_delete(instance: object,
 sender: object, **kwargs)->None:

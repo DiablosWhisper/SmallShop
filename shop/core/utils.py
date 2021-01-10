@@ -32,7 +32,7 @@ def render_hex_color(color: str)->"HTML":
     return format_html(html)
 #endregion
 
-#region                 -----Other Functions-----
+#region                 -----Useful Functions-----
 def get_related(instance: object)->List:
     """
     Finds all related product using iterative
