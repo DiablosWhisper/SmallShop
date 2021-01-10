@@ -5,7 +5,7 @@ from string import digits
 from typing import List
 import random
 
-def render_related_images(images: List)->str:
+def render_related_images(images: List)->"HTML":
     """
     Generates and beautifies HTML code
     for displaying related images\n
@@ -16,6 +16,19 @@ def render_related_images(images: List)->str:
     width: 70px'; display: inline-block;">"""
     for image in images]
     return format_html("\n".join(html))
+
+def render_hex_color(color: str)->"HTML":
+    """
+    Generates and beautifies HTML code
+    for displaying hex color\n
+    @return rendered HTML page
+    """
+    """Generates HTML and adds style to display"""
+    html=f"""<a style='background-color: {color}; 
+    display: inline-block; height: 20px; 
+    width: 20px; border-radius: 50%;'>
+    </a>"""
+    return format_html(html)
 
 def get_related(instance: object)->List:
     """
@@ -33,21 +46,8 @@ def get_related(instance: object)->List:
         [(visited.add(node), queue.add(node))
         for node in queue.pop().related.all() 
         if condition(node, queue, visited)]
-        
+    visited.remove(instance)
     return visited
-
-def render_hex_color(color: str)->str:
-    """
-    Generates and beautifies HTML code
-    for displaying hex color\n
-    @return rendered HTML page
-    """
-    """Generates HTML and adds style to display"""
-    html=f"""<a style='background-color: {color}; 
-    display: inline-block; height: 20px; 
-    width: 20px; border-radius: 50%;'>
-    </a>"""
-    return format_html(html)
 
 def generate_slug(instance: object, 
 generated_slug: str=None)->str:

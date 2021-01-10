@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.urls import reverse
 from typing import List
 
+#TODO: Create Cart model and etc.
+
 class Product(Model):
     """Information region"""
     title=CharField(max_length=100, null=False, blank=False)
