@@ -1,4 +1,5 @@
-from django.shortcuts import (render, get_object_or_404)
+from .services import ProductService
+from django.shortcuts import render
 from .models import Product
 
 def product(request: object, slug: str)->"HTML":
@@ -7,25 +8,19 @@ def product(request: object, slug: str)->"HTML":
     @param request: HTTP request\n
     @return rendered HTML page
     """
-    product=get_object_or_404(klass=Product, slug=slug)
+    product=ProductService().get_product_by(slug=slug)
     return render(template_name="core/product.html",
     context={"product": product}, request=request)
 
 def catalog(request: object)->"HTML":
-    #TODO: Beautify catalog method, reduce if-statements
     """
     Returns rendered HTML page with all found products\n
     @param request: HTTP request\n
     @return rendered HTML page
     """
-    products=Product.objects.all()
-    send, remove=set(), set()
-    for product in products:
-        if product not in remove: send.add(product)
-        for related in product.related.all():
-            if related not in remove and related not in send: remove.add(related)
+    products=ProductService().get_catalog_content()
     return render(template_name="core/catalog.html",
-    context={"products": send},
+    context={"products": products},
     request=request)
 
 def home(request: object)->"HTML":

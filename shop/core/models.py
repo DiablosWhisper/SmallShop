@@ -9,7 +9,6 @@ from django.urls import reverse
 from typing import List
 
 #TODO: Create Cart model and etc.
-#region                 -----Product Dependencies-----
 class Product(Model):
     #region             -----Information-----
     title=CharField(max_length=100, null=False, blank=False)
@@ -104,4 +103,3 @@ class Size(Model):
         """@return size title"""
         return self.size
     #endregion
-#endregion

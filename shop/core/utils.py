@@ -5,7 +5,7 @@ from string import digits
 from typing import List
 import random
 
-#region                 -----Render Functions-----
+#region             -----Render Functions-----
 def render_related_images(images: List)->"HTML":
     """
     Generates and beautifies HTML code
@@ -32,7 +32,7 @@ def render_hex_color(color: str)->"HTML":
     return format_html(html)
 #endregion
 
-#region                 -----Useful Functions-----
+#region             -----Useful Functions-----
 def get_related(instance: object)->List:
     """
     Finds all related product using iterative
@@ -40,7 +40,7 @@ def get_related(instance: object)->List:
     @return related products
     """
     """Condition for adding node to sets"""
-    condition=(lambda node, queue, visited:
+    go_to_next=(lambda node, queue, visited:
     not (node in queue or node in visited))
 
     """BFS iterative algorithm"""
@@ -48,7 +48,7 @@ def get_related(instance: object)->List:
     while queue:
         [(visited.add(node), queue.add(node))
         for node in queue.pop().related.all() 
-        if condition(node, queue, visited)]
+        if go_to_next(node, queue, visited)]
     visited.remove(instance)
     return visited
 

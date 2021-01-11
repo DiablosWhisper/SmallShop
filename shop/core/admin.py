@@ -3,7 +3,7 @@ from django.contrib.admin import ModelAdmin
 from django.forms import ModelForm
 from django.contrib import admin
 
-#region                 -----Admin Forms-----
+#region             -----Admin Forms-----
 class ProductForm(ModelForm):
     """Class inner methods"""
     def __init__(self, *args, **kwargs)->None:
@@ -21,7 +21,7 @@ class ProductForm(ModelForm):
     class Meta: fields="__all__"; model=Product
 #endregion
 
-#region                 -----Admin Pages-----
+#region             -----Admin Pages-----
 class ProductAdmin(ModelAdmin):
     fields=["title", ("price", "discount"), "description",
     ("related", "sizes", "color"), "photos"]

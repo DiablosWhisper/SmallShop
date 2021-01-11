@@ -32,6 +32,8 @@
         font-size: 24px;
     }
     .product{
+        max-width: 300px;
+        max-height: 400px;
         grid-area: product;
         font-family: var(--font);
     }
