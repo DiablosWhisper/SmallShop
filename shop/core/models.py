@@ -11,41 +11,50 @@ from typing import List
 #TODO: Create Cart model and etc.
 #region                 -----Product Dependencies-----
 class Product(Model):
-    """Information region"""
+    #region             -----Information-----
     title=CharField(max_length=100, null=False, blank=False)
     discount=PositiveIntegerField(null=True, blank=True)
     price=PositiveIntegerField(null=False, blank=False)
     description=TextField(max_length=255, blank=False)
+    #endregion
 
-    """Database region"""
+    #region               -----Database-----
     slug=SlugField(max_length=50, unique=True, blank=True)
     created_at=DateTimeField(default=timezone.now)
     updated_at=DateTimeField(default=timezone.now)
+    #endregion
 
-    """Relation region"""
+    #region               -----Relation-----
     related=ManyToManyField("self", blank=True)
     sizes=ManyToManyField("Size", blank=False)
     color=ForeignKey("Color", blank=True,
     on_delete=CASCADE, null=True)
+    #endregion
 
-    """Class outter methods"""
+    #region           -----External Methods-----
     def photos(self)->object:
         """@return related images"""
         return render_related_images(
         images=self.photo_set.all())
+    #endregion
 
-    """Class inner methods"""
+    #region           -----Internal Methods-----
     def __str__(self)->str:
         """@return product title"""
         return self.title
+    #endregion
 
 class Photo(Model):
-    """Information region"""
+    #region             -----Information-----
     photo=ImageField(upload_to="images", null=False)
+    #endregion
+
+    #region               -----Relation-----
     product=ForeignKey("Product", blank=False, 
     on_delete=CASCADE, default=1)
+    #endregion
 
-    """Class outter methods"""
+    #region           -----External Methods-----
     @property
     def title(self)->object:
         """
@@ -57,38 +66,42 @@ class Photo(Model):
         viewname=f"admin:core_photo_change")
         html=f"<a href='{link}'>image</a>"
         return format_html(html)
+    #endregion
     
-    """Class inner methods"""
+    #region           -----Internal Methods-----
     def __str__(self)->str:
         """@return image url"""
         return self.photo.url
+    #endregion
 
 class Color(Model):
-    """Information region"""
+    #region             -----Information-----
     color=ColorField(default="#FF0000", null=False)
     title=CharField(max_length=20, default="",
     null=False)
+    #endregion
 
-    """Class outter methods"""
+    #region           -----External Methods-----
     def hex_color(self)->object:
         """@return hex color"""
         return render_hex_color(
         color=self.color)
+    #endregion
 
-    """Class inner methods"""
+    #region           -----Internal Methods-----
     def __str__(self)->str:
         """@return color title"""
         return self.title
+    #endregion
 
 class Size(Model):
-    """Information region"""
+    #region             -----Information-----
     size=CharField(max_length=5, null=False)
+    #endregion
 
-    """Class inner methods"""
+    #region           -----Internal Methods-----
     def __str__(self)->str:
         """@return size title"""
         return self.size
-#endregion
-
-#region                  -----Cart Dependencies-----
+    #endregion
 #endregion
