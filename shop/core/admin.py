@@ -1,9 +1,14 @@
-from .models import Color, Size, Photo, Product
+#region             -----External Imports-----
 from django.contrib.admin import ModelAdmin
-from django.forms import ModelForm
 from django.contrib import admin
+from django.forms import ModelForm
+#endregion
 
-#region             -----Admin Forms-----
+#region             -----Internal Imports-----
+from .models import Color, Size, Photo, Product
+#endregion
+
+#region               -----Admin Forms-----
 class ProductForm(ModelForm):
     """Class inner methods"""
     def __init__(self, *args, **kwargs)->None:
@@ -21,7 +26,7 @@ class ProductForm(ModelForm):
     class Meta: fields="__all__"; model=Product
 #endregion
 
-#region             -----Admin Pages-----
+#region               -----Admin Pages-----
 class ProductAdmin(ModelAdmin):
     fields=["title", ("price", "discount"), "description",
     ("related", "sizes", "color"), "photos"]
@@ -38,7 +43,7 @@ class PhotoAdmin(ModelAdmin):
     list_display=["title", "photo"]
 #endregion
 
-#region                 -----Page Record-----
+#region               -----Page Record-----
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Color, ColorAdmin)
