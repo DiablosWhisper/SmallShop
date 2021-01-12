@@ -28,6 +28,7 @@ class ProductService(object):
             for related in product.related.all() 
             if hide_product(related, show, hide)]
         return show
+        
     def get_product_by(self, **kwargs)->"Product":
         """
         Returns product by some user condition
