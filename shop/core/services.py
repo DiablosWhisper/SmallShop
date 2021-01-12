@@ -20,7 +20,7 @@ class ProductService(object):
         without duplicating related products\n
         @return list of products or raises 404
         """
-        """Condition for hiding product"""
+        #*Condition for hiding product
         hide_product=(lambda product, show, hide:
         not (product in hide or product in show))
 
