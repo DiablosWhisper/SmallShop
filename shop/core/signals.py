@@ -11,7 +11,7 @@ from .models import Photo, Product
 
 #region             -----Product Signals-----
 @receiver(m2m_changed, sender=Product.related.through)
-def pair_product(instance: "Product", action: str, 
+def pair_product(instance: Product, action: str,
 **kwargs)->None:
     #TODO: Implement auto-connection while association
         #* Function for collecting related objects
@@ -19,7 +19,7 @@ def pair_product(instance: "Product", action: str,
     pass
 
 @receiver(pre_save, sender=Product)
-def create_slug_on_create(instance: "Product", 
+def create_slug_on_create(instance: Product,
 **kwargs)->None:
     """
     Generates unique slug using the title
@@ -32,7 +32,7 @@ def create_slug_on_create(instance: "Product",
 
 #region              -----Photo Signals-----
 @receiver(post_delete, sender=Photo)
-def delete_on_delete(instance: "Photo", 
+def delete_on_delete(instance: Photo,
 **kwargs)->None:
     """
     Deletes file reference when the photo
@@ -43,7 +43,7 @@ def delete_on_delete(instance: "Photo",
     instance.photo.delete(save=False)
 
 @receiver(pre_save, sender=Photo)
-def delete_on_change(instance: "Photo", 
+def delete_on_change(instance: Photo,
 **kwargs)->None:
     """
     Deletes an old file when the photo

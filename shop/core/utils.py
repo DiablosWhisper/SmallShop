@@ -4,10 +4,16 @@ from django.utils.text import slugify
 import random
 from string import ascii_lowercase as letters
 from string import digits
+from typing import TypeVar, List
+#endregion
+
+#region                -----Type Hints-----
+Product=TypeVar("Product", callable, object)
+Html=TypeVar("Html", str, bytes)
 #endregion
 
 #region             -----Render Functions-----
-def render_related_images(images: "List[str]")->"HTML":
+def render_related_images(images: List[str])->Html:
     """
     Generates and beautifies HTML code
     for displaying related images\n
@@ -20,7 +26,7 @@ def render_related_images(images: "List[str]")->"HTML":
     for image in images]
     return format_html("\n".join(html))
 
-def render_hex_color(color: str)->"HTML":
+def render_hex_color(color: str)->Html:
     """
     Generates and beautifies HTML code
     for displaying hex color\n
@@ -36,7 +42,7 @@ def render_hex_color(color: str)->"HTML":
 #endregion
 
 #region             -----Useful Functions-----
-def get_related(instance: "Product")->"List":
+def get_related(instance: Product)->List:
     """
     Finds all related products using BFS\n
     :param instance: product instance\n
@@ -55,7 +61,7 @@ def get_related(instance: "Product")->"List":
     visited.remove(instance)
     return visited
 
-def generate_slug(instance: "Product", 
+def generate_slug(instance: Product, 
 generated_slug: str=None)->str:
     """
     Generates unique slug using the title

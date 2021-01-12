@@ -6,10 +6,15 @@ DateTimeField, ForeignKey, SlugField, CASCADE)
 from django.utils.html import format_html
 from django.utils import timezone
 from django.urls import reverse
+from typing import TypeVar
 #endregion
 
 #region             -----Internal Imports-----
 from .utils import (render_related_images, render_hex_color)
+#endregion
+
+#region                -----Type Hints-----
+Html=TypeVar("Html", str, bytes)
 #endregion
 
 class Product(Model):
@@ -34,7 +39,7 @@ class Product(Model):
     #endregion
 
     #region         -----External Methods-----
-    def photos(self)->"HTML":
+    def photos(self)->Html:
         """@return related images"""
         return render_related_images(
         images=self.photo_set.all())
@@ -57,7 +62,7 @@ class Photo(Model):
     #endregion
 
     #region         -----External Methods-----
-    def title(self)->"HTML":
+    def title(self)->Html:
         """
         Displays the title of the image and
         the link for image editing\n
@@ -83,7 +88,7 @@ class Color(Model):
     #endregion
 
     #region         -----External Methods-----
-    def hex_color(self)->"HTML":
+    def hex_color(self)->Html:
         """@return hex color"""
         return render_hex_color(
         color=self.color)

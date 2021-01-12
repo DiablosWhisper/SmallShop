@@ -1,15 +1,20 @@
 #region             -----External Imports-----
 from django.shortcuts import (get_object_or_404, get_list_or_404)
+from typing import TypeVar, List
 #endregion
 
 #region             -----Internal Imports-----
 from .models import Product
 #endregion
 
+#region                -----Type Hints-----
+Product=TypeVar("Product", Product, object)
+#endregion
+
 #region             -----Product Service-----
 class ProductService(object):
     #TODO: Refactor method
-    def get_catalog_content(self)->"List[Product]":
+    def get_catalog_content(self)->List[Product]:
         """
         Returns list of products to catalog page
         without duplicating related products\n
@@ -29,7 +34,7 @@ class ProductService(object):
             if hide_product(related, show, hide)]
         return show
         
-    def get_product_by(self, **kwargs)->"Product":
+    def get_product_by(self, **kwargs)->Product:
         """
         Returns product by some user condition
         or if product isn't found raises 404\n

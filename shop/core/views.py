@@ -1,13 +1,18 @@
 #region             -----External Imports-----
 from django.shortcuts import render
-from typing import (Dict, TypeVar, List)
+from typing import Dict, List, TypeVar
 #endregion
 
 #region             -----Internal Imports-----
 from .services import ProductService
 #endregion
 
-def product(request: "Dict(HTTP|HTTPS)", slug: str)->"HTML":
+#region                -----Type Hints-----
+Http=TypeVar("Http", Dict, List)
+Html=TypeVar("Html", str, bytes)
+#endregion
+
+def product(request: Http, slug: str)->Html:
     """
     Returns rendered HTML page with slug found product\n
     :param slug: slug to find product by\n
@@ -18,7 +23,7 @@ def product(request: "Dict(HTTP|HTTPS)", slug: str)->"HTML":
     return render(template_name="core/product.html",
     context={"product": product}, request=request)
 
-def catalog(request: "Dict(HTTP|HTTPS)")->"HTML":
+def catalog(request: Http)->Html:
     """
     Returns rendered HTML page with all found products\n
     :param request: dictionary\n
@@ -29,7 +34,7 @@ def catalog(request: "Dict(HTTP|HTTPS)")->"HTML":
     context={"products": products},
     request=request)
 
-def home(request: "Dict(HTTP|HTTPS)")->"HTML":
+def home(request: Http)->Html:
     """
     Returns rendered HTML page without context\n
     :param request: dictionary\n
