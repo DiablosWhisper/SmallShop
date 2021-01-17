@@ -11,12 +11,17 @@ from .models import Photo, Product
 
 #region             -----Product Signals-----
 @receiver(m2m_changed, sender=Product.related.through)
-def pair_product(instance: Product, action: str,
-**kwargs)->None:
-    #TODO: Implement auto-connection while association
-        #* Function for collecting related objects
-        #? Integrate algorithm into m2m_change
-    pass
+def find_and_associate_related(instance: Product,
+action: str, **kwargs)->None:
+    """
+    Finds all related products using BFS algorithm
+    and then connects them between each other\n
+    :param action: action to execute\n
+    :param instance: product model\n
+    @return None
+    """
+    (instance.related.set(get_related(instance))
+    if action=="post_add" else "Do nothing")
 
 @receiver(pre_save, sender=Product)
 def create_slug_on_create(instance: Product,
@@ -48,6 +53,7 @@ def delete_on_change(instance: Photo,
     """
     Deletes an old file when the photo
     was updated by admin\n
+    :param instance: photo instance\n
     @return None
     """
     (Photo.objects.filter(pk=instance.pk).

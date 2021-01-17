@@ -82,7 +82,8 @@ generated_slug: str=None)->str:
     #*Searching for an existing slug
     exists=(type(instance).objects.
     filter(slug=slug).exists())
-
+    
+    #*Creats or returns the slug
     return (generate_slug(instance=instance,
     generated_slug=generate(slug)) if exists
     else slug)
