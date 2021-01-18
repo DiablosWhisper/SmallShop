@@ -4,7 +4,7 @@ from typing import Dict, List, TypeVar
 #endregion
 
 #region             -----Internal Imports-----
-from .services import ProductService
+from .services.product import ProductService
 #endregion
 
 #region                -----Type Hints-----

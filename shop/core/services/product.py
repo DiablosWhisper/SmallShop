@@ -4,11 +4,7 @@ from typing import TypeVar, List
 #endregion
 
 #region             -----Internal Imports-----
-from .models import Product
-#endregion
-
-#region                -----Type Hints-----
-Product=TypeVar("Product", Product, object)
+from ..models import Product
 #endregion
 
 #region             -----Product Service-----

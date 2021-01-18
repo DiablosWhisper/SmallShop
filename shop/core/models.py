@@ -48,7 +48,7 @@ class Product(Model):
     #region        -----Internal Methods-----
     def __str__(self)->str:
         """@return product title"""
-        return self.title
+        return f"{self.title} {self.color}"
     #endregion
 
 class Photo(Model):
