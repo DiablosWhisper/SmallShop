@@ -1,4 +1,5 @@
 #region             -----External Imports-----
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.text import slugify
 import random
@@ -42,6 +43,20 @@ def render_hex_color(color: str)->Html:
 #endregion
 
 #region             -----Useful Functions-----
+def reverse_related_url(model: str, id: int, 
+title: str, app: str)->Html:
+    """
+    Displays link to the CRUD admin form\n
+    :param title: title to show\n
+    :param id: id of instance\n
+    :param model: model name\n
+    @return editing link
+    """
+    url=f"admin:{app}_{model}_change"
+    link=reverse(viewname=url, args=[id])
+    html=f"<a href='{link}'>{title}</a>"
+    return format_html(html)
+
 def get_related(instance: Product)->List:
     """
     Finds all related products using BFS\n

@@ -3,14 +3,13 @@ from colorfield.fields import ColorField
 from django.db.models import (Model, ImageField, TextField,
 PositiveIntegerField, CharField, ManyToManyField,
 DateTimeField, ForeignKey, SlugField, CASCADE)
-from django.utils.html import format_html
 from django.utils import timezone
-from django.urls import reverse
 from typing import TypeVar
 #endregion
 
 #region             -----Internal Imports-----
-from .utils import (render_related_images, render_hex_color)
+from .utils import (render_related_images, render_hex_color,
+reverse_related_url)
 #endregion
 
 #region                -----Type Hints-----
@@ -38,14 +37,14 @@ class Product(Model):
     on_delete=CASCADE, null=True)
     #endregion
 
-    #region        -----External Methods-----
+    #region         -----External Methods-----
     def photos(self)->Html:
         """@return related images"""
         return render_related_images(
         images=self.photo_set.all())
     #endregion
 
-    #region        -----Internal Methods-----
+    #region         -----Internal Methods-----
     def __str__(self)->str:
         """@return product title"""
         return f"{self.title} {self.color}"
@@ -61,20 +60,20 @@ class Photo(Model):
     on_delete=CASCADE, default=1)
     #endregion
 
-    #region        -----External Methods-----
+    #region         -----External Methods-----
     def title(self)->Html:
         """
         Displays the title of the image and
         the link for image editing\n
         @return editing link
         """
-        link=reverse(args=[self.pk], 
-        viewname=f"admin:core_photo_change")
-        html=f"<a href='{link}'>image</a>"
-        return format_html(html)
+        return reverse_related_url(
+        title=str(self.product),
+        app="core", id=self.pk,
+        model="photo")
     #endregion
     
-    #region        -----Internal Methods-----
+    #region         -----Internal Methods-----
     def __str__(self)->str:
         """@return image url"""
         return self.photo.url
@@ -87,14 +86,14 @@ class Color(Model):
     null=False)
     #endregion
 
-    #region        -----External Methods-----
+    #region         -----External Methods-----
     def hex_color(self)->Html:
         """@return hex color"""
         return render_hex_color(
         color=self.color)
     #endregion
 
-    #region        -----Internal Methods-----
+    #region         -----Internal Methods-----
     def __str__(self)->str:
         """@return color title"""
         return self.title
@@ -105,7 +104,7 @@ class Size(Model):
     size=CharField(max_length=5, null=False)
     #endregion
 
-    #region        -----Internal Methods-----
+    #region         -----Internal Methods-----
     def __str__(self)->str:
         """@return size title"""
         return self.size
