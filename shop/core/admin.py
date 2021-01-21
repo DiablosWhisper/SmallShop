@@ -10,7 +10,7 @@ from .models import Color, Size, Photo, Product
 
 #region               -----Admin Forms-----
 class ProductForm(ModelForm):
-    """Class inner methods"""
+    #region         -----Internal Methods-----
     def __init__(self, *args, **kwargs)->None:
         """
         Excludes the current product from the list
@@ -21,9 +21,11 @@ class ProductForm(ModelForm):
         super(ProductForm, self).__init__(*args, **kwargs)
         self.fields["related"].queryset=(Product.objects.
         exclude(pk=self.instance.pk))
+    #endregion
 
-    """Class meta area"""
+    #region             -----Metadata-----
     class Meta: fields="__all__"; model=Product
+    #endregion
 #endregion
 
 #region               -----Admin Pages-----

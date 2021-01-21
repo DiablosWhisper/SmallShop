@@ -1,4 +1,6 @@
+#region             -----External Imports-----
 from django.apps import AppConfig
+#endregion
 
 class CoreConfig(AppConfig):
     name = 'core'
