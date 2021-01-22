@@ -19,7 +19,7 @@ def product(request: Http, slug: str)->Html:
     :param request: dictionary\n
     @return rendered HTML page
     """
-    product=ProductService().get_product_by(slug=slug)
+    product=ProductService().get_product_by_any(slug=slug)
     return render(template_name="core/product.html",
     context={"product": product}, request=request)
 
